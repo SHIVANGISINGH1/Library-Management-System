@@ -5,6 +5,7 @@ const FooterBottom = () => {
     <FooterHeadContainer>
       <FooterHeadText>
         &copy; {new Date().getFullYear()} Copyright: Library Management System
+        
       </FooterHeadText>
     </FooterHeadContainer>
   );

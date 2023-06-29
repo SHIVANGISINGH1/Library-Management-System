@@ -9,15 +9,12 @@ import {
   NavLinks,
   NavLink,
   NavItem,
-  SearchBox,
   RightContainer,
   BrandLogo,
-  LoginLink,
   Button,
 } from "./Styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import Borrow from "../pages/borrow_books";
-import { useEffect } from "react";
 
 const NavbarHead = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
@@ -58,7 +55,10 @@ const NavbarHead = () => {
 
   const display = () => {
     
-   
+    
+   if (!isAuthenticated) {
+      loginWithRedirect();
+   }
     setShowBorrow((prev) => !prev)
   }
 
@@ -97,12 +97,24 @@ const NavbarHead = () => {
             <NavItem>
               <NavLink href="/">Home</NavLink>
             </NavItem>
+
+            <NavItem>
+              <NavLink href="/books">All Books</NavLink>
+            </NavItem>
+
             <NavItem>
               <NavLink href="/viewbooks">View Books</NavLink>
             </NavItem>
+
+            <NavItem>
+              <NavLink href="/searchbooks">Find Books</NavLink>
+            </NavItem>
+
+
             <NavItem>
               <Button
                 onClick={display}
+               
                 type="submit"
               >
                 Borrowed Books
@@ -110,24 +122,15 @@ const NavbarHead = () => {
             </NavItem>
     
           </NavLinks>
-          <RightContainer>
-            <form onSubmit={handleSearch}>
-              <SearchBox
-                type="text"
-                placeholder="Search for Books"
-                id="searchInput" // Add a unique id attribute
-                name="search" // Add a unique name attribute
-                value={searchValue}
-                onChange={handleSearchChange}
-              />
-            </form>
-          </RightContainer>
+        
           {isAuthenticated && (
             <RightContainer style={{ marginLeft: "20px" }}>
               <BrandLogo src="logo.jpg" alt="Library Management System Logo" />
-              <p>{user.email}</p>
+              <p>{user?.name || user?.email}</p>
             </RightContainer>
-          )}
+          )}  
+          
+          
         </Navbar>
         {searchResults && <ViewSearchResults searchResults={searchResults} />}
       </div>

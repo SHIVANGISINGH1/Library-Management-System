@@ -38,7 +38,6 @@ const BookState = (props) => {
 
   const [borrowBooks, setBorrowBooks] = useState([]);
 
-
   console.log(borrowBooks);
 
   const addBook = (book) => {

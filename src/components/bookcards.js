@@ -47,7 +47,7 @@ const BookCards = () => {
   return (
     <div>
       <Title style={{ marginLeft: "80px", marginTop: "40px" }}>
-        Top Trending Books of 2023
+        Expand Your Knowledge in Tech with Our Books
       </Title>
       <BooksList>
         <PreviousButton onClick={() => handlePreviousClick(cardContainerRef1)}>
@@ -59,7 +59,6 @@ const BookCards = () => {
 
         <CardContainer ref={cardContainerRef1}>
           {bookData.map((book) => (
-            // console.log(book.title, book.subject,book.author,book.releasedate,book.image,book.id)
             <CardComponent
               title={book.title}
               desc={book.subject}
@@ -74,7 +73,7 @@ const BookCards = () => {
       </BooksList>
 
       <Title style={{ marginLeft: "80px", marginTop: "40px" }}>
-        Best Selling Books of 2023
+        Our Best Selling Books of 2023
       </Title>
 
       <BooksList>
